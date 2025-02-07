@@ -2,13 +2,15 @@ import sys
 import subprocess
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
+import qdarkstyle
 
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("My HTS v1.0")
+        self.setWindowTitle("Desktop Manager")
         self.setGeometry(300, 300, 400, 400)
-        self.setWindowIcon(QIcon("pie-chart.png"))
+        self.setWindowIcon(QIcon("icon.png"))
+
 
         btn1 = QPushButton(text="Backup", parent=self)
         btn1.move(10, 10)
@@ -22,8 +24,17 @@ class MyWindow(QMainWindow):
         btn3.move(10, 110)
         btn3.clicked.connect(self.btn3_clicked)
 
+        btn4 = QPushButton(text="App", parent=self)
+        btn4.move(10, 160)
+        btn4.clicked.connect(self.btn4_clicked)
+
+        btn_clear = QPushButton(text="Clear", parent=self)
+        btn_clear.move(10, 210)
+        btn_clear.clicked.connect(self.btn_clear_clicked)
+
 
     def btn1_clicked(self):
+
         try:
             batch_file_path = "D:/Backup/backup.bat"
             subprocess.run(batch_file_path, shell=True)
@@ -45,8 +56,22 @@ class MyWindow(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "오류", f"배치 파일 실행 중 오류 발생: {str(e)}")
 
+    def btn4_clicked(self):
+        try:
+            app_path = "D:/Programming/Microsoft VS Code/Code.exe"
+            subprocess.Popen(app_path)
+        except Exception as e:
+            QMessageBox.critical(self, "오류", f"배치 파일 실행 중 오류 발생: {str(e)}")
+
+    def btn_clear_clicked(self):
+        try:
+            subprocess.run('PowerShell.exe -NoProfile -Command Clear-RecycleBin -Force', shell=True)
+        except Exception as e:
+            QMessageBox.critical(self, "오류", f"배치 파일 실행 중 오류 발생: {str(e)}")
+
 
 app = QApplication(sys.argv)
+app.setStyleSheet(qdarkstyle.load_stylesheet_pyside6())
 window = MyWindow()
 window.show()
 app.exec()
