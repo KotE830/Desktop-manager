@@ -1,4 +1,4 @@
-from buttons.button import *
+from objects.buttons.button import *
 
 class ClearButton(Button):
     def __init__(self, parent, title="Button"):

@@ -1,6 +1,6 @@
-from buttons.button import *
+from objects.buttons.button import *
 
-class RunButton(Button):
+class SampleButton(Button):
     def __init__(self, parent, title="Button"):
         super().__init__(parent, title)
 
@@ -8,7 +8,8 @@ class RunButton(Button):
     @pyqtSlot()
     def btn_clicked(self):
         try:
-            path = "D:/bat/run.bat"
-            subprocess.run(path, shell=True)
+            url = "https://www.google.com"
+            path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+            subprocess.Popen([path, "--incognito", url])
         except Exception as e:
             QMessageBox.critical(self.parent, "Error", f"Error: {str(e)}")

@@ -1,6 +1,6 @@
-from buttons.button import *
+from objects.buttons.button import *
 
-class BackupButton(Button):
+class RunButton(Button):
     def __init__(self, parent, title="Button"):
         super().__init__(parent, title)
 
@@ -8,7 +8,7 @@ class BackupButton(Button):
     @pyqtSlot()
     def btn_clicked(self):
         try:
-            path = "D:/Backup/backup.bat"
+            path = "D:/bat/run.bat"
             subprocess.run(path, shell=True)
         except Exception as e:
             QMessageBox.critical(self.parent, "Error", f"Error: {str(e)}")
