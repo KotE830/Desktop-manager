@@ -1,15 +1,13 @@
 from objects.buttons.button import *
 
+# This is a Sample Button
 class SampleButton(Button):
-    def __init__(self, parent, title="Button"):
-        super().__init__(parent, title)
+    def __init__(self, parent):
+        super().__init__(parent, "Title")
+        self.set_tooltip("Tooltip")
 
-
-    @pyqtSlot()
-    def btn_clicked(self):
+    def execute(self):
         try:
-            url = "https://www.google.com"
-            path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
-            subprocess.Popen([path, "--incognito", url])
+            pass
         except Exception as e:
-            QMessageBox.critical(self.parent, "Error", f"Error: {str(e)}")
+            show_error("Error", f"Error: {str(e)}")

@@ -1,4 +1,4 @@
 from .buttons import *
-from .texteditor import *
+from .lists import *
 
-__all__ = buttons.__all__ + texteditor.__all__
+__all__ = buttons.__all__ + lists.__all__
